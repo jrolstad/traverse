@@ -21,6 +21,7 @@ namespace traverse.domain.services.tests.gtfs
 
             // Assert
             Assert.That(result.Agencies,Is.Not.Empty);
+            Assert.That(result.Calendars,Is.Not.Empty);
         }
     }
 }

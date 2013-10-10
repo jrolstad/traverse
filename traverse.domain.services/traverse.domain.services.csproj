@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="gtfs\class_maps\AgencyClassMap.cs" />
+    <Compile Include="gtfs\class_maps\CalendarClassMap.cs" />
+    <Compile Include="gtfs\class_maps\converters\YyyymmddTypeConverter.cs" />
     <Compile Include="gtfs\GtfsFileSetReader.cs" />
     <Compile Include="io\FileSystem.cs" />
     <Compile Include="io\IFileSystem.cs" />

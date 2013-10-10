@@ -36,6 +36,7 @@ namespace traverse.domain.services.gtfs
                 var gtfsSet = new GtfsSet();
 
                 gtfsSet.Agencies = ReadFile<Agency,AgencyClassMap>(zipFileContainer, "agency.txt");
+                gtfsSet.Calendars = ReadFile<Calendar, CalendarClassMap>(zipFileContainer, "calendar.txt");
 
                 return gtfsSet;
             }
@@ -48,9 +49,13 @@ namespace traverse.domain.services.gtfs
                 .Where(f => f.IsFile)
                 .SingleOrDefault(f => string.Equals(f.Name, fileName, StringComparison.CurrentCultureIgnoreCase));
 
+            if (file == null)
+            {
+                return new List<T>();
+            }
+                
             var fileContents = zipFile.GetInputStream(file);
 
-            
             var configuration = new CsvConfiguration();
             configuration.RegisterClassMap<M>();
             configuration.WillThrowOnMissingField = false;
