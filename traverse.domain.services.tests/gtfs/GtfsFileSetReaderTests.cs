@@ -1,7 +1,10 @@
-﻿using CsvHelper;
+﻿using System;
+using System.Linq;
+using CsvHelper;
 using NUnit.Framework;
 using traverse.domain.services.gtfs;
 using traverse.domain.services.io;
+using traverse.gtfs.models;
 
 namespace traverse.domain.services.tests.gtfs
 {
@@ -22,6 +25,8 @@ namespace traverse.domain.services.tests.gtfs
             // Assert
             Assert.That(result.Agencies,Is.Not.Empty);
             Assert.That(result.Calendars,Is.Not.Empty);
+            Assert.That(result.CalendarDates,Is.Not.Empty);
+            Assert.That(result.CalendarDates.Select(d => (int)d.ExceptionType).Distinct(), Is.EquivalentTo(new[] { 1, 2 }));
         }
     }
 }

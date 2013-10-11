@@ -37,6 +37,16 @@ namespace traverse.domain.services.gtfs
 
                 gtfsSet.Agencies = ReadFile<Agency,AgencyClassMap>(zipFileContainer, "agency.txt");
                 gtfsSet.Calendars = ReadFile<Calendar, CalendarClassMap>(zipFileContainer, "calendar.txt");
+                gtfsSet.CalendarDates = ReadFile<CalendarDate, CalendarDateClassMap>(zipFileContainer, "calendar_dates.txt");
+                gtfsSet.FareAttributes = ReadFile<FareAttribute, FareAttributeClassMap>(zipFileContainer, "fare_attributes.txt");
+                gtfsSet.FareRules = ReadFile<FareRule, FareRuleClassMap>(zipFileContainer, "fare_rules.txt");
+                gtfsSet.FeedInfo = ReadFile<FeedInfo, FeedInfoClassMap>(zipFileContainer, "feed_info.txt");
+                gtfsSet.Frequencies = ReadFile<Frequency, FrequencyClassMap>(zipFileContainer, "frequencies.txt");
+                gtfsSet.Routes = ReadFile<Route, RouteClassMap>(zipFileContainer, "routes.txt");
+                gtfsSet.Shapes = ReadFile<Shape, ShapeClassMap>(zipFileContainer, "shapes.txt");
+                gtfsSet.StopTimes = ReadFile<StopTime, StopTimeClassMap>(zipFileContainer, "stop_times.txt");
+                gtfsSet.Transfers = ReadFile<Transfer, TransferClassMap>(zipFileContainer, "transfers.txt");
+                gtfsSet.Trips = ReadFile<Trip, TripClassMap>(zipFileContainer, "trips.txt");
 
                 return gtfsSet;
             }
@@ -59,7 +69,8 @@ namespace traverse.domain.services.gtfs
             var configuration = new CsvConfiguration();
             configuration.RegisterClassMap<M>();
             configuration.WillThrowOnMissingField = false;
-
+            configuration.SkipEmptyRecords = true;
+            
             using(var textReader = new StreamReader(fileContents))
             using (var reader = _csvFactory.CreateReader(textReader,configuration))
             {

@@ -6,9 +6,9 @@ namespace traverse.gtfs.models
     {
         public string TripId { get; set; }
 
-        public DateTime ArrivalTime { get; set; }
+        public string ArrivalTime { get; set; }
 
-        public DateTime DepartureTime { get; set; }
+        public string DepartureTime { get; set; }
 
         public string StopId { get; set; }
 
