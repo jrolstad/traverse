@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <EmbeddedResource Include="resources\gtfs_data.zip" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\traverse.domain.services\traverse.domain.services.csproj">
