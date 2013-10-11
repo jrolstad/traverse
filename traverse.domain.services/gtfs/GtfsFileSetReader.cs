@@ -54,23 +54,17 @@ namespace traverse.domain.services.gtfs
 
         private List<T> ReadFile<T,M>(ZipFile zipFile, string fileName) where M : CsvClassMap
         {
-            var file = zipFile
-                .Cast<ZipEntry>()
-                .Where(f => f.IsFile)
-                .SingleOrDefault(f => string.Equals(f.Name, fileName, StringComparison.CurrentCultureIgnoreCase));
+            var file = GetFile(zipFile, fileName);
 
             if (file == null)
             {
                 return new List<T>();
             }
                 
-            var fileContents = zipFile.GetInputStream(file);
+            var fileContents = ReadFile(zipFile, file);
 
-            var configuration = new CsvConfiguration();
-            configuration.RegisterClassMap<M>();
-            configuration.WillThrowOnMissingField = false;
-            configuration.SkipEmptyRecords = true;
-            
+            var configuration = CreateFileReaderConfiguration<M>();
+
             using(var textReader = new StreamReader(fileContents))
             using (var reader = _csvFactory.CreateReader(textReader,configuration))
             {
@@ -78,6 +72,30 @@ namespace traverse.domain.services.gtfs
 
                 return data.ToList();
             }
+        }
+
+        private static CsvConfiguration CreateFileReaderConfiguration<M>() where M : CsvClassMap
+        {
+            var configuration = new CsvConfiguration();
+            configuration.RegisterClassMap<M>();
+            configuration.WillThrowOnMissingField = false;
+            configuration.SkipEmptyRecords = true;
+            return configuration;
+        }
+
+        private static Stream ReadFile(ZipFile zipFile, ZipEntry file)
+        {
+            var fileContents = zipFile.GetInputStream(file);
+            return fileContents;
+        }
+
+        private static ZipEntry GetFile(ZipFile zipFile, string fileName)
+        {
+            var file = zipFile
+                .Cast<ZipEntry>()
+                .Where(f => f.IsFile)
+                .SingleOrDefault(f => string.Equals(f.Name, fileName, StringComparison.CurrentCultureIgnoreCase));
+            return file;
         }
     }
 }
