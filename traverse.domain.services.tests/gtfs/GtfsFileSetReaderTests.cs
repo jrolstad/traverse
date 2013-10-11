@@ -225,6 +225,69 @@ namespace traverse.domain.services.tests.gtfs
             Assert.That(_result.FareAttributes.Single(f => f.FareId == "221").TransferDuration, Is.EqualTo(7200));
         }
 
+        [Test]
+        public void FareRules_Then_the_fare_rules_are_read()
+        {
+            // Assert
+            Assert.That(_result.FareRules, Has.Count.EqualTo(79));
+        }
+
+        [Test]
+        public void FareRules_Then_the_fare_id_is_read()
+        {
+            // Assert
+            Assert.That(_result.FareRules.Any(f => string.IsNullOrEmpty(f.FareId)), Is.False);
+        }
+
+        [Test]
+        public void FareRules_Then_the_origin_id_is_read()
+        {
+            // Assert
+            Assert.That(_result.FareRules.First().OriginId, Is.EqualTo("S_ST"));
+        }
+
+        [Test]
+        public void FareRules_Then_the_destination_id_is_read()
+        {
+            // Assert
+            Assert.That(_result.FareRules.First().DestinationId, Is.EqualTo("S_LW"));
+        }
+
+        [Test]
+        public void Frequencies_Then_the_frequencies_are_read()
+        {
+            // Assert
+            Assert.That(_result.Frequencies, Has.Count.EqualTo(10));
+        }
+
+        [Test]
+        public void Frequencies_Then_the_trip_id_is_read()
+        {
+            // Assert
+            Assert.That(_result.Frequencies.Last().TripId, Is.EqualTo("TLSBWD"));
+        }
+
+        [Test]
+        public void Frequencies_Then_the_start_time_is_read()
+        {
+            // Assert
+            Assert.That(_result.Frequencies.Last().StartTime.TimeOfDay, Is.EqualTo(TimeSpan.Parse("20:00:00")));
+        }
+
+        [Test]
+        public void Frequencies_Then_the_end_time_is_read()
+        {
+            // Assert
+            Assert.That(_result.Frequencies.Last().EndTime.TimeOfDay, Is.EqualTo(TimeSpan.Parse("22:00:00")));
+        }
+
+        [Test]
+        public void Frequencies_Then_the_headway_seconds_is_read()
+        {
+            // Assert
+            Assert.That(_result.Frequencies.Last().HeadwaySeconds, Is.EqualTo(1440));
+        }
+
         private Stream GetSampleZipFile()
         {
             var assembly = Assembly.GetExecutingAssembly();
