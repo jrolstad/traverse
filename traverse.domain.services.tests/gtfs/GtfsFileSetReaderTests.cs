@@ -12,7 +12,7 @@ namespace traverse.domain.services.tests.gtfs
         public void When_reading_a_zip_file_then_all_files_are_read()
         {
             // Arrange
-            var zipFilePath = @"C:\Users\JoshR\Downloads\GTFS (2).zip";
+            var zipFilePath = @"C:\Users\Administrator\Downloads\GTFS.zip";
 
             var reader = new GtfsFileSetReader(new FileSystem(), new CsvFactory());
 
