@@ -367,6 +367,69 @@ namespace traverse.domain.services.tests.gtfs
             Assert.That(_result.Shapes.First().ShapePointSequence, Is.EqualTo(1));
         }
 
+        [Test]
+        public void StopTimes_Then_the_stop_times_are_read()
+        {
+            // Assert
+            Assert.That(_result.StopTimes, Has.Count.EqualTo(6997));
+        }
+
+        [Test]
+        public void StopTimes_Then_the_trip_id_is_read()
+        {
+            // Assert
+            Assert.That(_result.StopTimes.First().TripId, Is.EqualTo("510"));
+        }
+
+        [Test]
+        public void StopTimes_Then_the_arrival_time_is_read()
+        {
+            // Assert
+            Assert.That(_result.StopTimes.First().ArrivalTime, Is.EqualTo("7:40:00"));
+        }
+
+        [Test]
+        public void StopTimes_Then_the_departure_time_is_read()
+        {
+            // Assert
+            Assert.That(_result.StopTimes.First().DepartureTime, Is.EqualTo("7:40:00"));
+        }
+
+        [Test]
+        public void StopTimes_Then_the_stop_id_is_read()
+        {
+            // Assert
+            Assert.That(_result.StopTimes.First().StopId, Is.EqualTo("S_KS"));
+        }
+
+        [Test]
+        public void StopTimes_Then_the_stop_sequence_is_read()
+        {
+            // Assert
+            Assert.That(_result.StopTimes.First().StopSequence, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void StopTimes_Then_the_stop_headsign_is_read()
+        {
+            // Assert
+            Assert.That(_result.StopTimes.First().StopHeadsign, Is.EqualTo("Everett"));
+        }
+
+        [Test]
+        public void StopTimes_Then_the_pickup_type_is_read()
+        {
+            // Assert
+            Assert.That(_result.StopTimes.First().PickupType, Is.EqualTo(StopPickupType.RegularlyScheduledPickup));
+        }
+
+        [Test]
+        public void StopTimes_Then_the_drop_off_type_is_read()
+        {
+            // Assert
+            Assert.That(_result.StopTimes.First().DropOffType, Is.EqualTo(StopDropOffType.RegularlyScheduledDropOff));
+        }
+
         private Stream GetSampleZipFile()
         {
             var assembly = Assembly.GetExecutingAssembly();

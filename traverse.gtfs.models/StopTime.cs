@@ -25,10 +25,10 @@ namespace traverse.gtfs.models
 
     public enum StopPickupType
     {
-        RegularlyScheduledPickup = 1,
-        NoPickupAvailable = 2,
-        MustPhoneAgencyToArrangePickup = 3,
-        MustCoordinateWithDriverToArrangePickup = 4
+        RegularlyScheduledPickup = 0,
+        NoPickupAvailable = 1,
+        MustPhoneAgencyToArrangePickup = 2,
+        MustCoordinateWithDriverToArrangePickup = 3
     }
 
     public enum StopDropOffType
