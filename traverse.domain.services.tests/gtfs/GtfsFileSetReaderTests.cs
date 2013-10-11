@@ -332,6 +332,41 @@ namespace traverse.domain.services.tests.gtfs
             Assert.That(_result.Routes.Single(f => f.RouteId == "SNDR_N").RouteType, Is.EqualTo(RouteType.Rail));
         }
 
+        [Test]
+        public void Shapes_Then_the_shapes_are_read()
+        {
+            // Assert
+            Assert.That(_result.Shapes, Has.Count.EqualTo(4115));
+        }
+
+        [Test]
+        public void Shapes_Then_the_shape_id_is_read()
+        {
+            // Assert
+            Assert.That(_result.Shapes.Any(f => string.IsNullOrEmpty(f.ShapeId)), Is.False);
+        }
+
+        [Test]
+        public void Shapes_Then_the_shape_latitude_is_read()
+        {
+            // Assert
+            Assert.That(_result.Shapes.First().ShapePointLatitude, Is.EqualTo(47.59756239));
+        }
+
+        [Test]
+        public void Shapes_Then_the_shape_longitude_is_read()
+        {
+            // Assert
+            Assert.That(_result.Shapes.First().ShapePointLongitude, Is.EqualTo(-122.3295129));
+        }
+
+        [Test]
+        public void Shapes_Then_the_shape_sequence_is_read()
+        {
+            // Assert
+            Assert.That(_result.Shapes.First().ShapePointSequence, Is.EqualTo(1));
+        }
+
         private Stream GetSampleZipFile()
         {
             var assembly = Assembly.GetExecutingAssembly();
