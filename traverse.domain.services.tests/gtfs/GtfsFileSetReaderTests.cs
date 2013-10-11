@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using CsvHelper;
@@ -28,52 +29,129 @@ namespace traverse.domain.services.tests.gtfs
 
 
         [Test]
-        public void Then_the_agencies_are_read()
+        public void Agency_Then_the_agencies_are_read()
         {
             // Assert
             Assert.That(_result.Agencies,Has.Count.EqualTo(1));
         }
 
         [Test]
-        public void Then_the_agency_id_is_read()
+        public void Agency_Then_the_agency_id_is_read()
         {
             // Assert
             Assert.That(_result.Agencies.First().AgencyId,Is.EqualTo("SoundTransit"));
         }
 
         [Test]
-        public void Then_the_agency_name_is_read()
+        public void Agency_Then_the_agency_name_is_read()
         {
             // Assert
             Assert.That(_result.Agencies.First().AgencyName, Is.EqualTo("Sound Transit"));
         }
 
         [Test]
-        public void Then_the_agency_url_is_read()
+        public void Agency_Then_the_agency_url_is_read()
         {
             // Assert
             Assert.That(_result.Agencies.First().AgencyUrl, Is.EqualTo("http://www.soundtransit.org"));
         }
 
         [Test]
-        public void Then_the_agency_language_is_read()
+        public void Agency_Then_the_agency_language_is_read()
         {
             // Assert
             Assert.That(_result.Agencies.First().AgencyLanguage, Is.EqualTo("EN"));
         }
 
         [Test]
-        public void Then_the_agency_time_zone_is_read()
+        public void Agency_Then_the_agency_time_zone_is_read()
         {
             // Assert
             Assert.That(_result.Agencies.First().AgencyTimeZone, Is.EqualTo(@"America/Los_Angeles"));
         }
 
         [Test]
-        public void Then_the_agency_phone_number_is_read()
+        public void Agency_Then_the_agency_phone_number_is_read()
         {
             // Assert
             Assert.That(_result.Agencies.First().AgencyPhone, Is.EqualTo(@"(800) 201-4900"));
+        }
+
+        [Test]
+        public void Calendar_Then_the_calendars_are_read()
+        {
+            // Assert
+            Assert.That(_result.Calendars,Has.Count.EqualTo(3));
+        }
+
+        [Test]
+        public void Calendar_Then_the_service_id_is_read()
+        {
+            // Assert
+            Assert.That(_result.Calendars.Select(c=>c.ServiceId).Distinct().ToList(),Is.EquivalentTo(new[]{"SU","SA","WD"}));
+        }
+
+        [Test]
+        public void Calendar_Then_monday_is_read()
+        {
+            // Assert
+            Assert.That(_result.Calendars.Single(c=>c.ServiceId == "WD").Monday,Is.EqualTo(true));
+        }
+
+        [Test]
+        public void Calendar_Then_tuesday_is_read()
+        {
+            // Assert
+            Assert.That(_result.Calendars.Single(c => c.ServiceId == "WD").Tuesday, Is.EqualTo(true));
+        }
+
+        [Test]
+        public void Calendar_Then_wednesday_is_read()
+        {
+            // Assert
+            Assert.That(_result.Calendars.Single(c => c.ServiceId == "WD").Wednesday, Is.EqualTo(true));
+        }
+
+        [Test]
+        public void Calendar_Then_thursday_is_read()
+        {
+            // Assert
+            Assert.That(_result.Calendars.Single(c => c.ServiceId == "WD").Thursday, Is.EqualTo(true));
+        }
+
+        [Test]
+        public void Calendar_Then_friday_is_read()
+        {
+            // Assert
+            Assert.That(_result.Calendars.Single(c => c.ServiceId == "WD").Friday, Is.EqualTo(true));
+        }
+
+        [Test]
+        public void Calendar_Then_saturday_is_read()
+        {
+            // Assert
+            Assert.That(_result.Calendars.Single(c => c.ServiceId == "WD").Saturday, Is.EqualTo(false));
+        }
+
+        [Test]
+        public void Calendar_Then_sunday_is_read()
+        {
+            // Assert
+            Assert.That(_result.Calendars.Single(c => c.ServiceId == "WD").Sunday, Is.EqualTo(false));
+        }
+
+        [Test]
+        public void Calendar_Then_the_start_date_is_read()
+        {
+            // Assert
+            Assert.That(_result.Calendars.Single(c => c.ServiceId == "WD").StartDate, Is.EqualTo(new DateTime(2013,9,29)));
+        }
+
+        [Test]
+        public void Calendar_Then_the_end_date_is_read()
+        {
+            // Assert
+            Assert.That(_result.Calendars.Single(c => c.ServiceId == "WD").EndDate, Is.EqualTo(new DateTime(2014, 2, 15)));
         }
 
         private Stream GetSampleZipFile()
