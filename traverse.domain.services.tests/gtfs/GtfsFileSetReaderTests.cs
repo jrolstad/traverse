@@ -27,7 +27,6 @@ namespace traverse.domain.services.tests.gtfs
             _result = reader.Read(zipFile);
         }
 
-
         [Test]
         public void Agency_Then_the_agencies_are_read()
         {
@@ -179,8 +178,51 @@ namespace traverse.domain.services.tests.gtfs
         public void Calendar_Then_the_exception_type_is_read()
         {
             // Assert
-            Assert.That(_result.CalendarDates.SingleOrDefault(d=>d.ServiceId == "SU" && d.Date == new DateTime(2013,11,28)).ExceptionType,Is.EqualTo(ExceptionType.ServiceAddedForTheSpecifiedDate));
-            Assert.That(_result.CalendarDates.SingleOrDefault(d=>d.ServiceId == "WD" && d.Date == new DateTime(2013,11,28)).ExceptionType,Is.EqualTo(ExceptionType.ServiceRemovedForTheSpecifiedDate));
+            Assert.That(_result.CalendarDates.Single(d => d.ServiceId == "SU" && d.Date == new DateTime(2013, 11, 28)).ExceptionType, Is.EqualTo(ExceptionType.ServiceAddedForTheSpecifiedDate));
+            Assert.That(_result.CalendarDates.Single(d => d.ServiceId == "WD" && d.Date == new DateTime(2013, 11, 28)).ExceptionType, Is.EqualTo(ExceptionType.ServiceRemovedForTheSpecifiedDate));
+        }
+
+        [Test]
+        public void FareAttributes_Then_the_fare_attributes_are_read()
+        {
+            // Assert
+            Assert.That(_result.FareAttributes, Has.Count.EqualTo(25));
+        }
+
+        [Test]
+        public void FareAttributes_Then_the_fare_id_is_read()
+        {
+            // Assert
+            Assert.That(_result.FareAttributes.Any(f => string.IsNullOrEmpty(f.FareId)), Is.False);
+        }
+
+        [Test]
+        public void FareAttributes_Then_the_price_is_read()
+        {
+            // Assert
+            Assert.That(_result.FareAttributes.Single(f=>f.FareId == "221").Price,Is.EqualTo(2.5));
+        }
+
+        [Test]
+        public void FareAttributes_Then_the_currency_type_is_read()
+        {
+            // Assert
+            Assert.That(_result.FareAttributes.Single(f => f.FareId == "221").CurrencyType, Is.EqualTo("USD"));
+        }
+
+        [Test]
+        public void FareAttributes_Then_the_payment_method_is_read()
+        {
+            // Assert
+            Assert.That(_result.FareAttributes.Single(f => f.FareId == "221").PaymentMethod, Is.EqualTo(FarePaymentMethod.PaidBeforeBoarding));
+            Assert.That(_result.FareAttributes.Single(f => f.FareId == "36").PaymentMethod, Is.EqualTo(FarePaymentMethod.PaidOnBoard));
+        }
+
+        [Test]
+        public void FareAttributes_Then_the_transfer_duration_is_read()
+        {
+            // Assert
+            Assert.That(_result.FareAttributes.Single(f => f.FareId == "221").TransferDuration, Is.EqualTo(7200));
         }
 
         private Stream GetSampleZipFile()
