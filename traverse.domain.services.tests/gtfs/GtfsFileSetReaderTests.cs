@@ -27,6 +27,9 @@ namespace traverse.domain.services.tests.gtfs
             _result = reader.Read(zipFile);
         }
 
+        // FeedInfo
+        // Transfer
+
         [Test]
         public void Agency_Then_the_agencies_are_read()
         {
@@ -428,6 +431,69 @@ namespace traverse.domain.services.tests.gtfs
         {
             // Assert
             Assert.That(_result.StopTimes.First().DropOffType, Is.EqualTo(StopDropOffType.RegularlyScheduledDropOff));
+        }
+
+        [Test]
+        public void Stops_Then_the_stops_are_read()
+        {
+            // Assert
+            Assert.That(_result.Stops, Has.Count.EqualTo(100));
+        }
+
+        [Test]
+        public void Stops_Then_the_stop_id_is_read()
+        {
+            // Assert
+            Assert.That(_result.Stops.Any(f => string.IsNullOrEmpty(f.StopId)), Is.False);
+        }
+
+        [Test]
+        public void Stops_Then_the_stop_name_is_read()
+        {
+            // Assert
+            Assert.That(_result.Stops.Single(s=>s.StopId == "S_MU").StopName, Is.EqualTo("Mukilteo Station"));
+        }
+
+        [Test]
+        public void Stops_Then_the_stop_description_is_read()
+        {
+            // Assert
+            Assert.That(_result.Stops.Single(s => s.StopId == "S_MU").StopDescription, Is.EqualTo("Mukilteo Station - SR525 and 1st Street"));
+        }
+
+        [Test]
+        public void Stops_Then_the_stop_latitude_is_read()
+        {
+            // Assert
+            Assert.That(_result.Stops.Single(s => s.StopId == "S_MU").StopLatitude, Is.EqualTo(47.94837012));
+        }
+
+        [Test]
+        public void Stops_Then_the_stop_longitude_is_read()
+        {
+            // Assert
+            Assert.That(_result.Stops.Single(s => s.StopId == "S_MU").StopLongitude, Is.EqualTo(-122.3010522));
+        }
+
+        [Test]
+        public void Stops_Then_the_zone_id_is_read()
+        {
+            // Assert
+            Assert.That(_result.Stops.Single(s => s.StopId == "S_MU").ZoneId, Is.EqualTo("S_MU"));
+        }
+
+        [Test]
+        public void Stops_Then_the_stop_url_is_read()
+        {
+            // Assert
+            Assert.That(_result.Stops.Single(s => s.StopId == "TL_US").ZoneId, Is.EqualTo("http://www.soundtransit.org/x1355.xml"));
+        }
+
+        [Test]
+        public void Stops_Then_the_location_type_is_read()
+        {
+            // Assert
+            Assert.That(_result.Stops.Single(s => s.StopId == "S_MU").LocationType, Is.EqualTo(StopLocationType.Stop));
         }
 
         private Stream GetSampleZipFile()
