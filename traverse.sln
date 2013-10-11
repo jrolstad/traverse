@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2FBD7A27
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "traverse.domain.services.tests", "traverse.domain.services.tests\traverse.domain.services.tests.csproj", "{84D76AD0-F483-45DB-A615-A39DCA0B0ED6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "traverse.onebusaway.models", "traverse.onebusaway.models\traverse.onebusaway.models.csproj", "{BB4ECF74-E7FA-474C-9A5E-097EFC8918E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{84D76AD0-F483-45DB-A615-A39DCA0B0ED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84D76AD0-F483-45DB-A615-A39DCA0B0ED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84D76AD0-F483-45DB-A615-A39DCA0B0ED6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB4ECF74-E7FA-474C-9A5E-097EFC8918E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB4ECF74-E7FA-474C-9A5E-097EFC8918E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB4ECF74-E7FA-474C-9A5E-097EFC8918E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB4ECF74-E7FA-474C-9A5E-097EFC8918E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
