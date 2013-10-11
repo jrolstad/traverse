@@ -288,6 +288,50 @@ namespace traverse.domain.services.tests.gtfs
             Assert.That(_result.Frequencies.Last().HeadwaySeconds, Is.EqualTo(1440));
         }
 
+        [Test]
+        public void Routes_Then_the_routes_are_read()
+        {
+            // Assert
+            Assert.That(_result.Routes, Has.Count.EqualTo(16));
+        }
+
+        [Test]
+        public void Routes_Then_the_route_id_is_read()
+        {
+            // Assert
+            Assert.That(_result.Routes.Any(f => string.IsNullOrEmpty(f.RouteId)), Is.False);
+        }
+
+        [Test]
+        public void Routes_Then_the_route_short_name_is_read()
+        {
+            // Assert
+            Assert.That(_result.Routes.Single(f => f.RouteId == "513S").RouteShortName, Is.EqualTo("513"));
+        }
+
+        [Test]
+        public void Routes_Then_the_route_long_name_is_read()
+        {
+            // Assert
+            Assert.That(_result.Routes.Single(f => f.RouteId == "513S").RouteLongName, Is.EqualTo("Everett - Seattle"));
+        }
+
+        [Test]
+        public void Routes_Then_the_route_description_is_read()
+        {
+            // Assert
+            Assert.That(_result.Routes.Single(f => f.RouteId == "513S").RouteDescription, Is.EqualTo("Sound Transit Route"));
+        }
+
+        [Test]
+        public void Routes_Then_the_route_type_is_read()
+        {
+            // Assert
+            Assert.That(_result.Routes.Single(f => f.RouteId == "513S").RouteType, Is.EqualTo(RouteType.Bus));
+            Assert.That(_result.Routes.Single(f => f.RouteId == "TLINK").RouteType, Is.EqualTo(RouteType.LightRail));
+            Assert.That(_result.Routes.Single(f => f.RouteId == "SNDR_N").RouteType, Is.EqualTo(RouteType.Rail));
+        }
+
         private Stream GetSampleZipFile()
         {
             var assembly = Assembly.GetExecutingAssembly();
