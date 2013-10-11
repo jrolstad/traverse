@@ -8,7 +8,10 @@ namespace traverse.domain.services.gtfs.class_maps.converters
     {
         public string ConvertToString(TypeConverterOptions options, object value)
         {
-            throw new NotImplementedException();
+            var color = (Color)value;
+            var stringValue = ColorTranslator.ToHtml(color);
+
+            return stringValue;
         }
 
         public object ConvertFromString(TypeConverterOptions options, string text)

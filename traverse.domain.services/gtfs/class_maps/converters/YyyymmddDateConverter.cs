@@ -8,7 +8,13 @@ namespace traverse.domain.services.gtfs.class_maps.converters
     {
         public string ConvertToString(TypeConverterOptions options, object value)
         {
-            throw new NotImplementedException();
+            if (value == null)
+                return null;
+
+            var dateValue = (DateTime) value;
+            var formattedDate = dateValue.ToString("yyyyMMdd");
+
+            return formattedDate;
         }
 
         public object ConvertFromString(TypeConverterOptions options, string text)

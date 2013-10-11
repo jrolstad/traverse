@@ -29,7 +29,7 @@ namespace traverse.domain.services.gtfs
             return Read(file);
         }
 
-        public GtfsSet Read(FileStream zipFileStream)
+        public GtfsSet Read(Stream zipFileStream)
         {
             using (var zipFileContainer = new ZipFile(zipFileStream))
             {
@@ -56,17 +56,35 @@ namespace traverse.domain.services.gtfs
         {
             var file = GetFile(zipFile, fileName);
 
-            if (file == null)
-            {
-                return new List<T>();
-            }
+            if (file == null) return new List<T>();
                 
             var fileContents = ReadFile(zipFile, file);
+            var parsedData = ReadDataFromFile<T,M>(fileContents);
 
+            return parsedData;
+        }
+
+        private static ZipEntry GetFile(ZipFile zipFile, string fileName)
+        {
+            var file = zipFile
+                .Cast<ZipEntry>()
+                .Where(f => f.IsFile)
+                .SingleOrDefault(f => string.Equals(f.Name, fileName, StringComparison.CurrentCultureIgnoreCase));
+            return file;
+        }
+
+        private static Stream ReadFile(ZipFile zipFile, ZipEntry file)
+        {
+            var fileContents = zipFile.GetInputStream(file);
+            return fileContents;
+        }
+
+        private List<T> ReadDataFromFile<T, M>(Stream fileContents) where M : CsvClassMap
+        {
             var configuration = CreateFileReaderConfiguration<M>();
 
-            using(var textReader = new StreamReader(fileContents))
-            using (var reader = _csvFactory.CreateReader(textReader,configuration))
+            using (var textReader = new StreamReader(fileContents))
+            using (var reader = _csvFactory.CreateReader(textReader, configuration))
             {
                 var data = reader.GetRecords<T>();
 
@@ -83,19 +101,5 @@ namespace traverse.domain.services.gtfs
             return configuration;
         }
 
-        private static Stream ReadFile(ZipFile zipFile, ZipEntry file)
-        {
-            var fileContents = zipFile.GetInputStream(file);
-            return fileContents;
-        }
-
-        private static ZipEntry GetFile(ZipFile zipFile, string fileName)
-        {
-            var file = zipFile
-                .Cast<ZipEntry>()
-                .Where(f => f.IsFile)
-                .SingleOrDefault(f => string.Equals(f.Name, fileName, StringComparison.CurrentCultureIgnoreCase));
-            return file;
-        }
     }
 }
