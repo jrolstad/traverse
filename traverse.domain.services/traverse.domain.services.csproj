@@ -59,6 +59,7 @@
     <Compile Include="gtfs\class_maps\FrequencyClassMap.cs" />
     <Compile Include="gtfs\class_maps\RouteClassMap.cs" />
     <Compile Include="gtfs\class_maps\ShapeClassMap.cs" />
+    <Compile Include="gtfs\class_maps\StopClassMap.cs" />
     <Compile Include="gtfs\class_maps\StopTimeClassMap.cs" />
     <Compile Include="gtfs\class_maps\TransferClassMap.cs" />
     <Compile Include="gtfs\class_maps\TripClassMap.cs" />

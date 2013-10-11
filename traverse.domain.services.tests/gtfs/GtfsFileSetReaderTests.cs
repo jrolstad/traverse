@@ -486,7 +486,7 @@ namespace traverse.domain.services.tests.gtfs
         public void Stops_Then_the_stop_url_is_read()
         {
             // Assert
-            Assert.That(_result.Stops.Single(s => s.StopId == "TL_US").ZoneId, Is.EqualTo("http://www.soundtransit.org/x1355.xml"));
+            Assert.That(_result.Stops.Single(s => s.StopId == "TL_US").StopUrl, Is.EqualTo("http://www.soundtransit.org/x1355.xml"));
         }
 
         [Test]

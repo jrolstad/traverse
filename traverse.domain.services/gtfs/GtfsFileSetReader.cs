@@ -45,6 +45,7 @@ namespace traverse.domain.services.gtfs
                 gtfsSet.Routes = ReadFile<Route, RouteClassMap>(zipFileContainer, "routes.txt");
                 gtfsSet.Shapes = ReadFile<Shape, ShapeClassMap>(zipFileContainer, "shapes.txt");
                 gtfsSet.StopTimes = ReadFile<StopTime, StopTimeClassMap>(zipFileContainer, "stop_times.txt");
+                gtfsSet.Stops = ReadFile<Stop, StopClassMap>(zipFileContainer, "stops.txt");
                 gtfsSet.Transfers = ReadFile<Transfer, TransferClassMap>(zipFileContainer, "transfers.txt");
                 gtfsSet.Trips = ReadFile<Trip, TripClassMap>(zipFileContainer, "trips.txt");
 
