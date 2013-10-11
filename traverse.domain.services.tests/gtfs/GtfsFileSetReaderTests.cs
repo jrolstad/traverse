@@ -154,6 +154,35 @@ namespace traverse.domain.services.tests.gtfs
             Assert.That(_result.Calendars.Single(c => c.ServiceId == "WD").EndDate, Is.EqualTo(new DateTime(2014, 2, 15)));
         }
 
+        [Test]
+        public void CalendarDates_Then_the_calendar_dates_are_read()
+        {
+            // Assert
+            Assert.That(_result.CalendarDates, Has.Count.EqualTo(6));
+        }
+
+        [Test]
+        public void CalendarDates_Then_the_service_id_is_read()
+        {
+            // Assert
+            Assert.That(_result.CalendarDates.Select(c => c.ServiceId).Distinct().ToList(), Is.EquivalentTo(new[] { "SU", "WD" }));
+        }
+
+        [Test]
+        public void Calendar_Then_the_date_is_read()
+        {
+            // Assert
+            Assert.That(_result.CalendarDates.Last().Date, Is.EqualTo(new DateTime(2014, 1, 1)));
+        }
+
+        [Test]
+        public void Calendar_Then_the_exception_type_is_read()
+        {
+            // Assert
+            Assert.That(_result.CalendarDates.SingleOrDefault(d=>d.ServiceId == "SU" && d.Date == new DateTime(2013,11,28)).ExceptionType,Is.EqualTo(ExceptionType.ServiceAddedForTheSpecifiedDate));
+            Assert.That(_result.CalendarDates.SingleOrDefault(d=>d.ServiceId == "WD" && d.Date == new DateTime(2013,11,28)).ExceptionType,Is.EqualTo(ExceptionType.ServiceRemovedForTheSpecifiedDate));
+        }
+
         private Stream GetSampleZipFile()
         {
             var assembly = Assembly.GetExecutingAssembly();
