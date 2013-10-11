@@ -19,5 +19,7 @@
         public string TextColor { get; set; }
 
         public string AgencyId { get; set; }
+
+        public Agency Agency { get; set; }
     }
 }

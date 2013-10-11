@@ -82,6 +82,28 @@ namespace traverse.domain.services.onebusaway
             return response;
         }
 
+        public OneBusAwayResponse<Route> Route(string routeId)
+        {
+            var request = new RestRequest("api/where/route/{RouteId}.json?key={ApplicationKey}");
+            request.AddParameter("ApplicationKey", _applicationKey, ParameterType.UrlSegment);
+            request.AddParameter("RouteId", routeId, ParameterType.UrlSegment);
+
+            var response = ExecuteRequest<OneBusAwayResponse<Route>>(request);
+
+            return response;
+        }
+
+        public OneBusAwayResponse<OneBusAwayList<Route>> RoutesForAgency(string agencyId)
+        {
+            var request = new RestRequest("api/where/routes-for-agency/{AgencyId}.json?key={ApplicationKey}");
+            request.AddParameter("ApplicationKey", _applicationKey, ParameterType.UrlSegment);
+            request.AddParameter("AgencyId", agencyId, ParameterType.UrlSegment);
+
+            var response = ExecuteRequest<OneBusAwayResponse<OneBusAwayList<Route>>>(request);
+
+            return response;
+        }
+
         private T ExecuteRequest<T>(IRestRequest request) where T : new()
         {
             var response = _restClient.Execute<T>(request);
