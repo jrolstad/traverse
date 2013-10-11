@@ -496,6 +496,56 @@ namespace traverse.domain.services.tests.gtfs
             Assert.That(_result.Stops.Single(s => s.StopId == "S_MU").LocationType, Is.EqualTo(StopLocationType.Stop));
         }
 
+        [Test]
+        public void Trips_Then_the_trips_are_read()
+        {
+            // Assert
+            Assert.That(_result.Trips, Has.Count.EqualTo(555));
+        }
+
+        [Test]
+        public void Trips_Then_the_trip_id_is_read()
+        {
+            // Assert
+            Assert.That(_result.Trips.Any(f => string.IsNullOrEmpty(f.TripId)), Is.False);
+        }
+
+        [Test]
+        public void Stops_Then_the_route_id_is_read()
+        {
+            // Assert
+            Assert.That(_result.Trips.Single(s => s.TripId == "1502").RouteId, Is.EqualTo("SNDR_S"));
+        }
+
+        [Test]
+        public void Stops_Then_the_service_id_is_read()
+        {
+            // Assert
+            Assert.That(_result.Trips.Single(s => s.TripId == "1502").ServiceId, Is.EqualTo("WD"));
+        }
+
+        [Test]
+        public void Stops_Then_the_trip_headsign_is_read()
+        {
+            // Assert
+            Assert.That(_result.Trips.Single(s => s.TripId == "1502").TripHeadsign, Is.EqualTo("King Street Station"));
+        }
+
+        [Test]
+        public void Stops_Then_the_direction_id_is_read()
+        {
+            // Assert
+            Assert.That(_result.Trips.Single(s => s.TripId == "1502").DirectionId, Is.EqualTo(TripDirection.OppositeDirection));
+            Assert.That(_result.Trips.Single(s => s.TripId == "1501").DirectionId, Is.EqualTo(TripDirection.OneDirection));
+        }
+
+        [Test]
+        public void Stops_Then_the_shape_id_is_read()
+        {
+            // Assert
+            Assert.That(_result.Trips.Single(s => s.TripId == "1502").ShapeId, Is.EqualTo("SNDR_S_NBLW_shp"));
+        }
+
         private Stream GetSampleZipFile()
         {
             var assembly = Assembly.GetExecutingAssembly();
