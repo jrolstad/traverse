@@ -190,5 +190,17 @@ namespace traverse.domain.services.tests.onebusaway
             Assert.That(result.Data.Stops.Count,Is.EqualTo(1));
         }
 
+        [Test]
+        public void When_routes_for_route_then_it_is_obtained()
+        {
+            // Act
+            var result = _service.StopsForRoute("40");
+
+            // Assert
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.Data, Is.Not.Null);
+            Assert.That(result.Data.List, Is.Not.Null);
+        }
+
     }
 }
