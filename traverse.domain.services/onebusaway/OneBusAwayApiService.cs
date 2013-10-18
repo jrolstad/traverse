@@ -135,6 +135,17 @@ namespace traverse.domain.services.onebusaway
             return response;
         }
 
+        public OneBusAwayResponse<OneBusAwayDataEntry<StopRouteScheduleSet>> ScheduleForStop(string stopId)
+        {
+            var request = new RestRequest("api/where/schedule-for-stop/{StopId}.json?key={ApplicationKey}");
+            request.AddParameter("ApplicationKey", _applicationKey, ParameterType.UrlSegment);
+            request.AddParameter("StopId", stopId, ParameterType.UrlSegment);
+
+            var response = ExecuteRequest<OneBusAwayResponse<OneBusAwayDataEntry<StopRouteScheduleSet>>>(request);
+
+            return response;
+        }
+
         private T ExecuteRequest<T>(IRestRequest request) where T : new()
         {
             var response = _restClient.Execute<T>(request);

@@ -121,5 +121,20 @@ namespace traverse.domain.services.tests.onebusaway
             Assert.That(result, Is.Not.Null);
         }
 
+        [Test]
+        public void When_getting_schedule_for_stop_then_it_is_obtained()
+        {
+            // Act
+            var result = _service.ScheduleForStop("1_75403");
+
+            // Assert
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.Data, Is.Not.Null);
+            Assert.That(result.Data.Entry, Is.Not.Null);
+            Assert.That(result.Data.Entry.StopRouteSchedules, Is.Not.Null);
+            Assert.That(result.Data.Entry.StopRouteSchedules.All(s=>s.StopRouteDirectionSchedules!=null), Is.True);
+            Assert.That(result.Data.Entry.StopRouteSchedules.All(s=>s.StopRouteDirectionSchedules.All(r=>r.ScheduleStopTimes!=null)),Is.True);
+        }
+
     }
 }
