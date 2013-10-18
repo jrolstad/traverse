@@ -193,13 +193,13 @@ namespace traverse.domain.services.onebusaway
             return response;
         }
 
-        public OneBusAwayResponse<OneBusAwayList<string>> StopsForRoute(string routeId)
+        public OneBusAwayResponse<StopsForRoute> StopsForRoute(string routeId)
         {
             var request = new RestRequest("api/where/stops-for-route/{RouteId}.json?key={ApplicationKey}");
             request.AddParameter("ApplicationKey", _applicationKey, ParameterType.UrlSegment);
             request.AddParameter("RouteId", routeId, ParameterType.UrlSegment);
 
-            var response = ExecuteRequest<OneBusAwayResponse<OneBusAwayList<string>>>(request);
+            var response = ExecuteRequest<OneBusAwayResponse<StopsForRoute>>(request);
 
             return response;
         }

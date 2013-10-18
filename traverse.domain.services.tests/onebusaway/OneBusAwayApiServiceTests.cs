@@ -194,12 +194,15 @@ namespace traverse.domain.services.tests.onebusaway
         public void When_routes_for_route_then_it_is_obtained()
         {
             // Act
-            var result = _service.StopsForRoute("40");
+            var result = _service.StopsForRoute("1_40");
 
             // Assert
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Data, Is.Not.Null);
-            Assert.That(result.Data.List, Is.Not.Null);
+            Assert.That(result.Data.Stops, Is.Not.Null);
+            Assert.That(result.Data.Route, Is.Not.Null);
+            Assert.That(result.Data.StopGroupings, Is.Not.Null);
+            Assert.That(result.Data.StopGroupings[0].StopGroups, Is.Not.Null);
         }
 
     }

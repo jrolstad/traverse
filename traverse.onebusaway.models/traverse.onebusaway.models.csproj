@@ -54,6 +54,7 @@
     <Compile Include="Stop.cs" />
     <Compile Include="StopRouteScheduleSet.cs" />
     <Compile Include="StopList.cs" />
+    <Compile Include="StopsForRoute.cs" />
     <Compile Include="StopWithArrivalsAndDepartures.cs" />
     <Compile Include="Trip.cs" />
     <Compile Include="TripDetails.cs" />
