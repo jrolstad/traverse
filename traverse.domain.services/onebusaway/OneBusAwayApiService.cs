@@ -104,6 +104,37 @@ namespace traverse.domain.services.onebusaway
             return response;
         }
 
+        public OneBusAwayResponse<OneBusAwayList<Route>> RoutesForLocation(decimal latitude, decimal longitude, decimal? radius = null, decimal? latitudeSpan = null, decimal? longitudeSpan = null, string routeShortName = null)
+        {
+            var request = new RestRequest("api/where/routes-for-location.json?key={ApplicationKey}");
+            request.AddParameter("ApplicationKey", _applicationKey, ParameterType.UrlSegment);
+            request.AddParameter("Latitude", latitude, ParameterType.UrlSegment);
+            request.AddParameter("Longitude", longitude, ParameterType.UrlSegment);
+
+            if (radius.HasValue)
+            {
+                request.Resource += "&radius={Radius}";
+                request.AddParameter("Radius", radius);
+            }
+
+            if (latitudeSpan.HasValue && longitudeSpan.HasValue)
+            {
+                request.Resource += "&latSpan={LatitudeSpan}&lonSpan={LongitudeSpan}";
+                request.AddParameter("LatitudeSpan", latitudeSpan);
+                request.AddParameter("LongitudeSpan", longitudeSpan);
+            }
+
+            if (!string.IsNullOrWhiteSpace(routeShortName))
+            {
+                request.Resource += "&query={RouteShortName}";
+                request.AddParameter("RouteShortName", routeShortName);
+            }
+
+            var response = ExecuteRequest<OneBusAwayResponse<OneBusAwayList<Route>>>(request);
+
+            return response;
+        }
+
         private T ExecuteRequest<T>(IRestRequest request) where T : new()
         {
             var response = _restClient.Execute<T>(request);

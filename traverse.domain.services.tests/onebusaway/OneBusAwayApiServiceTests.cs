@@ -72,10 +72,50 @@ namespace traverse.domain.services.tests.onebusaway
         }
 
         [Test]
-        public void When_routes_for_agencies_then_it_is_obtained()
+        public void When_route_ids_for_agencies_then_it_is_obtained()
         {
             // Act
             var result = _service.RouteIdsForAgency("40");
+
+            // Assert
+            Assert.That(result, Is.Not.Null);
+        }
+
+        [Test]
+        public void When_route_then_it_is_obtained()
+        {
+            // Act
+            var result = _service.Route("40");
+
+            // Assert
+            Assert.That(result, Is.Not.Null);
+        }
+
+        [Test]
+        public void When_routes_for_agency_then_it_is_obtained()
+        {
+            // Act
+            var result = _service.RoutesForAgency("1");
+
+            // Assert
+            Assert.That(result, Is.Not.Null);
+        }
+
+        [Test]
+        public void When_routes_for_location_then_it_is_obtained()
+        {
+            // Act
+            var result = _service.RoutesForLocation(47.653435m, -122.305641m);
+
+            // Assert
+            Assert.That(result, Is.Not.Null);
+        }
+
+        [Test]
+        public void When_routes_for_location_and_route_name_then_it_is_obtained()
+        {
+            // Act
+            var result = _service.RoutesForLocation(47.653435m, -122.305641m,routeShortName:"40");
 
             // Assert
             Assert.That(result, Is.Not.Null);
