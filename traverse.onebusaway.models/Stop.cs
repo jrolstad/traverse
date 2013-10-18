@@ -21,5 +21,7 @@ namespace traverse.onebusaway.models
         public string WheelchairBoarding { get; set; }
 
         public List<string> RouteIds { get; set; } 
+
+        public List<Route> Routes { get; set; } 
     }
 }

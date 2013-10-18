@@ -109,6 +109,8 @@ namespace traverse.domain.services.tests.onebusaway
 
             // Assert
             Assert.That(result, Is.Not.Null);
+            Assert.That(result.Data, Is.Not.Null);
+            Assert.That(result.Data.Routes, Is.Not.Null);
         }
 
         [Test]
@@ -119,6 +121,8 @@ namespace traverse.domain.services.tests.onebusaway
 
             // Assert
             Assert.That(result, Is.Not.Null);
+            Assert.That(result.Data, Is.Not.Null);
+            Assert.That(result.Data.Routes, Is.Not.Null);
         }
 
         [Test]
@@ -134,6 +138,56 @@ namespace traverse.domain.services.tests.onebusaway
             Assert.That(result.Data.Entry.StopRouteSchedules, Is.Not.Null);
             Assert.That(result.Data.Entry.StopRouteSchedules.All(s=>s.StopRouteDirectionSchedules!=null), Is.True);
             Assert.That(result.Data.Entry.StopRouteSchedules.All(s=>s.StopRouteDirectionSchedules.All(r=>r.ScheduleStopTimes!=null)),Is.True);
+        }
+
+        [Test]
+        public void When_getting_stop_ids_for_agency_then_it_is_obtained()
+        {
+            // Act
+            var result = _service.StopIdsForAgency("1");
+
+            // Assert
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.Data, Is.Not.Null);
+            Assert.That(result.Data.List, Is.Not.Null);
+            Assert.That(result.Data.List, Is.Not.Null);
+        }
+
+        [Test]
+        public void When_getting_stop_then_it_is_obtained()
+        {
+            // Act
+            var result = _service.Stop("1_75403");
+
+            // Assert
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.Data, Is.Not.Null);
+            Assert.That(result.Data.Routes, Is.Not.Null);
+        }
+
+        [Test]
+        public void When_getting_stops_for_location_then_it_is_obtained()
+        {
+            // Act
+            var result = _service.StopsForLocation(47.653435m, -122.305641m);
+
+            // Assert
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.Data, Is.Not.Null);
+            Assert.That(result.Data.Stops, Is.Not.Null);
+        }
+
+        [Test]
+        public void When_getting_stops_for_location_and_stop_then_it_is_obtained()
+        {
+            // Act
+            var result = _service.StopsForLocation(47.653435m, -122.305641m, stopCode: "10917");
+
+            // Assert
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.Data, Is.Not.Null);
+            Assert.That(result.Data.Stops, Is.Not.Null);
+            Assert.That(result.Data.Stops.Count,Is.EqualTo(1));
         }
 
     }

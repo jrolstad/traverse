@@ -104,33 +104,30 @@ namespace traverse.domain.services.onebusaway
             return response;
         }
 
-        public OneBusAwayResponse<OneBusAwayList<Route>> RoutesForLocation(decimal latitude, decimal longitude, decimal? radius = null, decimal? latitudeSpan = null, decimal? longitudeSpan = null, string routeShortName = null)
+        public OneBusAwayResponse<RouteList> RoutesForLocation(decimal latitude, decimal longitude, decimal? radius = null, decimal? latitudeSpan = null, decimal? longitudeSpan = null, string routeShortName = null)
         {
-            var request = new RestRequest("api/where/routes-for-location.json?key={ApplicationKey}");
-            request.AddParameter("ApplicationKey", _applicationKey, ParameterType.UrlSegment);
-            request.AddParameter("Latitude", latitude, ParameterType.UrlSegment);
-            request.AddParameter("Longitude", longitude, ParameterType.UrlSegment);
+            var request = new RestRequest("api/where/routes-for-location.json");
+            request.AddParameter("key", _applicationKey, ParameterType.GetOrPost);
+            request.AddParameter("lat", latitude, ParameterType.GetOrPost);
+            request.AddParameter("lon", longitude, ParameterType.GetOrPost);
 
             if (radius.HasValue)
             {
-                request.Resource += "&radius={Radius}";
-                request.AddParameter("Radius", radius);
+                request.AddParameter("Radius", radius, ParameterType.GetOrPost);
             }
 
             if (latitudeSpan.HasValue && longitudeSpan.HasValue)
             {
-                request.Resource += "&latSpan={LatitudeSpan}&lonSpan={LongitudeSpan}";
-                request.AddParameter("LatitudeSpan", latitudeSpan);
-                request.AddParameter("LongitudeSpan", longitudeSpan);
+                request.AddParameter("latSpan", latitudeSpan, ParameterType.GetOrPost);
+                request.AddParameter("lonSpan", longitudeSpan, ParameterType.GetOrPost);
             }
 
             if (!string.IsNullOrWhiteSpace(routeShortName))
             {
-                request.Resource += "&query={RouteShortName}";
-                request.AddParameter("RouteShortName", routeShortName);
+                request.AddParameter("query", routeShortName, ParameterType.GetOrPost);
             }
 
-            var response = ExecuteRequest<OneBusAwayResponse<OneBusAwayList<Route>>>(request);
+            var response = ExecuteRequest<OneBusAwayResponse<RouteList>>(request);
 
             return response;
         }
@@ -142,6 +139,56 @@ namespace traverse.domain.services.onebusaway
             request.AddParameter("StopId", stopId, ParameterType.UrlSegment);
 
             var response = ExecuteRequest<OneBusAwayResponse<OneBusAwayDataEntry<StopRouteScheduleSet>>>(request);
+
+            return response;
+        }
+
+        public OneBusAwayResponse<OneBusAwayList<string>> StopIdsForAgency(string agencyId)
+        {
+            var request = new RestRequest("api/where/stop-ids-for-agency/{AgencyId}.json?key={ApplicationKey}");
+            request.AddParameter("ApplicationKey", _applicationKey, ParameterType.UrlSegment);
+            request.AddParameter("AgencyId", agencyId, ParameterType.UrlSegment);
+
+            var response = ExecuteRequest<OneBusAwayResponse<OneBusAwayList<string>>>(request);
+
+            return response;
+        }
+
+        public OneBusAwayResponse<Stop> Stop(string stopId)
+        {
+            var request = new RestRequest("api/where/stop/{StopId}.json?key={ApplicationKey}");
+            request.AddParameter("ApplicationKey", _applicationKey, ParameterType.UrlSegment);
+            request.AddParameter("StopId", stopId, ParameterType.UrlSegment);
+
+            var response = ExecuteRequest<OneBusAwayResponse<Stop>>(request);
+
+            return response;
+        }
+
+        public OneBusAwayResponse<StopList> StopsForLocation(decimal latitude, decimal longitude, decimal? radius = null, decimal? latitudeSpan = null, decimal? longitudeSpan = null, string stopCode = null)
+        {
+            var request = new RestRequest("api/where/stops-for-location.json");
+            request.AddParameter("key", _applicationKey, ParameterType.GetOrPost);
+            request.AddParameter("lat", latitude, ParameterType.GetOrPost);
+            request.AddParameter("lon", longitude, ParameterType.GetOrPost);
+
+            if (radius.HasValue)
+            {
+                request.AddParameter("Radius", radius, ParameterType.GetOrPost);
+            }
+
+            if (latitudeSpan.HasValue && longitudeSpan.HasValue)
+            {
+                request.AddParameter("LatSpan", latitudeSpan, ParameterType.GetOrPost);
+                request.AddParameter("LonSpan", longitudeSpan, ParameterType.GetOrPost);
+            }
+
+            if (!string.IsNullOrWhiteSpace(stopCode))
+            {
+                request.AddParameter("query", stopCode, ParameterType.GetOrPost);
+            }
+
+            var response = ExecuteRequest<OneBusAwayResponse<StopList>>(request);
 
             return response;
         }
