@@ -14,13 +14,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2FBD7A27
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "traverse.domain.services.tests", "traverse.domain.services.tests\traverse.domain.services.tests.csproj", "{84D76AD0-F483-45DB-A615-A39DCA0B0ED6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{DEBF5428-F523-4206-9297-558AE44C6BAB}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "traverse.onebusaway.models", "traverse.onebusaway.models\traverse.onebusaway.models.csproj", "{BB4ECF74-E7FA-474C-9A5E-097EFC8918E5}"
 EndProject
 Global
