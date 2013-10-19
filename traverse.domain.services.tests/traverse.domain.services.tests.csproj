@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="gtfs\GtfsFileSetReaderTests.cs" />
     <Compile Include="onebusaway\OneBusAwayApiServiceTests.cs" />
+    <Compile Include="orca\OrcaFileReaderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -71,6 +72,13 @@
       <Project>{bb4ecf74-e7fa-474c-9a5e-097efc8918e5}</Project>
       <Name>traverse.onebusaway.models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\traverse.orca.models\traverse.orca.models.csproj">
+      <Project>{98cc0301-cc8a-49ab-b58a-8a03261df635}</Project>
+      <Name>traverse.orca.models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="resources\orca_transactions.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

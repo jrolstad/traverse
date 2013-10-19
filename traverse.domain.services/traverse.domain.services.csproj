@@ -70,6 +70,7 @@
     <Compile Include="io\FileSystem.cs" />
     <Compile Include="io\IFileSystem.cs" />
     <Compile Include="onebusaway\OneBusAwayApiService.cs" />
+    <Compile Include="orca\OrcaFileReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +81,10 @@
     <ProjectReference Include="..\traverse.onebusaway.models\traverse.onebusaway.models.csproj">
       <Project>{bb4ecf74-e7fa-474c-9a5e-097efc8918e5}</Project>
       <Name>traverse.onebusaway.models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\traverse.orca.models\traverse.orca.models.csproj">
+      <Project>{98cc0301-cc8a-49ab-b58a-8a03261df635}</Project>
+      <Name>traverse.orca.models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
