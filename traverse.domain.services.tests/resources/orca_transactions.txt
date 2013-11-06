@@ -1,4 +1,24 @@
 ﻿Date	Item	Location	Product
+11/06/2013 05:26 AM	 Pass Use Journey, Route 513	SOT, CT-BUS-51214	PugetPass $4.00, November 2013	 -	 -	
+11/05/2013 03:25 PM	 Pass Use Journey, Route 511	SOT, CT-BUS-9572	PugetPass $4.00, November 2013	 -	 -	
+11/05/2013 05:25 AM	 Pass Use Journey, Route 513	SOT, CT-BUS-9553	PugetPass $4.00, November 2013	 -	 -	
+11/04/2013 03:27 PM	 Pass Use Journey, Route 511	SOT, CT-BUS-9557	PugetPass $4.00, November 2013	 -	 -	
+11/04/2013 05:26 AM	 Pass Use Journey, Route 513	SOT, CT-BUS-9578	PugetPass $4.00, November 2013	 -	 -	
+11/01/2013 03:13 PM	 Pass Use Journey, Route 415	COT, CT-BUS-27801	PugetPass $4.00, November 2013	 -	 -	
+11/01/2013 05:26 AM	 Purse Use Journey, Route 513	SOT, CT-BUS-9591	Purse (#49)	-3.50	13.50	
+10/31/2013 03:14 PM	 Pass Use Journey, Route 513	SOT, CT-BUS-9583	PugetPass $4.00, October 2013	 -	 -	
+10/31/2013 05:26 AM	 Pass Use Journey, Route 513	SOT, CT-BUS-9564	PugetPass $4.00, October 2013	 -	 -	
+10/30/2013 03:26 PM	 Pass Use Journey, Route 511	SOT, CT-BUS-9561	PugetPass $4.00, October 2013	 -	 -	
+10/30/2013 05:26 AM	 Pass Use Journey, Route 513	SOT, CT-BUS-9579	PugetPass $4.00, October 2013	 -	 -	
+10/29/2013 03:41 PM	 Pass Use Journey, Route 511	SOT, CT-BUS-9553	PugetPass $4.00, October 2013	 -	 -	
+10/29/2013 05:27 AM	 Pass Use Journey, Route 513	SOT, CT-BUS-51216	PugetPass $4.00, October 2013	 -	 -	
+10/28/2013 03:26 PM	 Pass Use Journey, Route 511	SOT, CT-BUS-9568	PugetPass $4.00, October 2013	 -	 -	
+10/25/2013 03:31 PM	 Pass Use Journey, Route 511	SOT, CT-BUS-9580	PugetPass $4.00, October 2013	 -	 -	
+10/25/2013 05:26 AM	 Pass Use Journey, Route 513	SOT, CT-BUS-51217	PugetPass $4.00, October 2013	 -	 -	
+10/24/2013 03:29 PM	 Pass Use Journey, Route 511	SOT, CT-BUS-9569	PugetPass $4.00, October 2013	 -	 -	
+10/24/2013 05:25 AM	 Pass Use Journey, Route 513	SOT, CT-BUS-9508	PugetPass $4.00, October 2013	 -	 -	
+10/22/2013 03:27 PM	 Pass Use Journey, Route 511	SOT, CT-BUS-9595	PugetPass $4.00, October 2013	 -	 -	
+10/22/2013 05:26 AM	 Pass Use Journey, Route 513	SOT, CT-BUS-9555	PugetPass $4.00, October 2013	 -	 -	
 10/18/2013 05:26 AM	 Pass Use Journey, Route 513	SOT, CT-BUS-51214	PugetPass $4.00, October 2013	 -	 -	
 10/17/2013 03:42 PM	 Pass Use Journey, Route 511	SOT, CT-BUS-51218	PugetPass $4.00, October 2013	 -	 -	
 10/17/2013 05:26 AM	 Pass Use Journey, Route 513	SOT, CT-BUS-9581	PugetPass $4.00, October 2013	 -	 -	

@@ -33,7 +33,7 @@ namespace traverse.domain.services.tests.orca
         public void Then_each_transaction_is_read()
         {
             // Assert
-            Assert.That(_result.Count,Is.EqualTo(1143));
+            Assert.That(_result.Count,Is.EqualTo(1163));
         }
 
         [Test]
